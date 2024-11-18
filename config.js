@@ -5,8 +5,8 @@ const config = {
     
     // 微信推送配置
     wxPusher: {
-        appToken: 'AT_*************',
-        uids: ['UID_***************'],
+        appToken: 'AT_8FQFDxpI2qvtDTrQG7jUCj6aTHOjgi2W',
+        uids: ['UID_AIQ8tkck5ulReU0umP6rNfOJ10lw'],
         apiUrl: 'https://wxpusher.zjiecode.com/api/send/message'
     },
     
