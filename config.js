@@ -1,7 +1,7 @@
 // 配置文件
 const config = {
     // 车主电话号码
-    phone: '123456',
+    phone: '17896021990',
     
     // 微信推送配置
     wxPusher: {
