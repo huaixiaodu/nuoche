@@ -92,7 +92,9 @@ const data = {
     uids: ["UID_AIQ8tkck5ulReU0umP6rNfOJ10lw", "UID_AIQ8tkck5ulReU0umP6rNfOJ10lw1"]
 };
 
-fetch('https://1251343297-i94fjfqyv0.ap-beijing.tencentscf.com', {
+console.log("Sending data:", data); // 输出发送的数据
+
+fetch('https://<your-backend-api-url>', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
@@ -101,6 +103,7 @@ fetch('https://1251343297-i94fjfqyv0.ap-beijing.tencentscf.com', {
 })
 .then(response => response.json())
 .then(data => {
+    console.log("Response from backend:", data); // 查看后端的响应
     if (data.code === 1000) {
         Swal.fire({
             icon: 'success',
@@ -124,7 +127,7 @@ fetch('https://1251343297-i94fjfqyv0.ap-beijing.tencentscf.com', {
     }
 })
 .catch(error => {
-    console.error('Error:', error);
+    console.error('Error:', error); // 捕获并输出错误
     Swal.fire({
         icon: 'error',
         title: '网络错误',
@@ -135,6 +138,7 @@ fetch('https://1251343297-i94fjfqyv0.ap-beijing.tencentscf.com', {
         showConfirmButton: false
     });
 });
+
 
 function callOwner() {
     window.location.href = "tel:17896021990";
