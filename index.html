@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>通知车主挪车</title>
-<style>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;title&gt;通知车主挪车&lt;/title&gt;
+&lt;style&gt;
           * { box-sizing: border-box; margin: 0; padding: 0; }
           body { font-family: Arial, sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; background: #f0f2f5; color: #333; }
           .container { text-align: center; padding: 20px; width: 100%; max-width: 400px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); background: #fff; }
@@ -26,15 +26,15 @@
           .notify-btn:hover { background: #218838; }
           .call-btn { background: #17a2b8; }
           .call-btn:hover { background: #138496; }
-        </style>
-</head>
-<body>
-<div class="container">
-        <h1>通知车主挪车</h1>
-        <p>如需通知车主，请点击以下按钮</p>
-<button class="notify-btn" onclick="notifyOwner()">通知车主挪车</button>
-        <button class="call-btn" onclick="callOwner()">拨打车主电话</button>
-<script>
+        &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class="container"&gt;
+        &lt;h1&gt;通知车主挪车&lt;/h1&gt;
+        &lt;p&gt;如需通知车主，请点击以下按钮&lt;/p&gt;
+&lt;button class="notify-btn" onclick="notifyOwner()"&gt;通知车主挪车&lt;/button&gt;
+        &lt;button class="call-btn" onclick="callOwner()"&gt;拨打车主电话&lt;/button&gt;
+&lt;script&gt;
 function notifyOwner() {
     fetch("https://wxpusher.zjiecode.com/api/send/message", {
         method: "POST",
@@ -46,15 +46,15 @@ function notifyOwner() {
             uids: ["UID_AIQ8tkck5ulReU0umP6rNfOJ10lw","UID_AIQ8tkck5ulReU0umP6rNfOJ10lw1"]
         })
     })
-    .then(response => response.json())
-    .then(data => {
+    .then(response =&gt; response.json())
+    .then(data =&gt; {
         if (data.code === 1000) {
             alert("通知已发送！");
         } else {
             alert("通知发送失败，请稍后重试。");
         }
     })
-    .catch(error => {
+    .catch(error =&gt; {
         console.error("Error sending notification:", error);
         alert("通知发送出错，请检查网络连接。");
     });
@@ -63,5 +63,5 @@ function notifyOwner() {
 function callOwner() {
     window.location.href = "tel:1318888888";
 }
-</script>
-</body></html>
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
