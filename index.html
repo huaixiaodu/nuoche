@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-
-     
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>通知车主挪车</title>
@@ -63,18 +61,12 @@
         <button class="call-btn" onclick="callOwner()">拨打车主电话</button>
 </div>
 <script>
-
-     
 let lastNotifyTime = 0; // 上次通知时间（时间戳）
 
 function notifyOwner() {
     const currentTime = Date.now();
     if (currentTime - lastNotifyTime < 60 * 1000) {
-        Swal.fire({
-            icon: 'warning',
-            title: '发送过于频繁',
-            text: '请稍后再试！'
-        });
+        alert("通知发送过于频繁，请稍后再试！");
         return;
     }
 
@@ -91,41 +83,21 @@ function notifyOwner() {
     .then(response => response.json())
     .then(data => {
         if (data.code === 1000) {
-            // 使用 SweetAlert2 显示通知已发送的提示框，并修改大小
-            Swal.fire({
-    icon: 'success',
-    title: '通知已发送！',
-    text: '车主已收到您的通知。',
-    width: '200px',  // 设置弹窗宽度
-    confirmButtonColor: '#28a745',  // 设置按钮颜色
-    padding: '20px',  // 设置弹窗内部的 padding
-});
-
+            alert("通知已发送！");
             lastNotifyTime = currentTime; // 更新最后发送时间
         } else {
-            Swal.fire({
-                icon: 'error',
-                title: '通知发送失败',
-                text: '请稍后重试。',
-                width: '400px'  // 设置弹窗宽度为 400px
-            });
+            alert("通知发送失败，请稍后重试。");
         }
     })
     .catch(error => {
         console.error("Error sending notification:", error);
-        Swal.fire({
-            icon: 'error',
-            title: '网络错误',
-            text: '通知发送出错，请检查网络连接。',
-            width: '400px'  // 设置弹窗宽度为 400px
-        });
+        alert("通知发送出错，请检查网络连接。");
     });
 }
 
 function callOwner() {
     window.location.href = "tel:1318888888";
 }
-
 </script>
 </body>
 </html>
