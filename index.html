@@ -1,79 +1,69 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>通知车主挪车</title>
-    <!-- 引入样式文件 -->
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>通知车主挪车</title>
+<style>
+          * { box-sizing: border-box; margin: 0; padding: 0; }
+          body { font-family: Arial, sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; background: #f0f2f5; color: #333; }
+          .container { text-align: center; padding: 20px; width: 100%; max-width: 400px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); background: #fff; }
+          h1 { font-size: 24px; margin-bottom: 20px; color: #007bff; }
+          p { margin-bottom: 20px; font-size: 16px; color: #555; }
+          button { 
+            width: 100%; 
+            padding: 15px; 
+            margin: 10px 0; 
+            font-size: 18px; 
+            font-weight: bold; 
+            color: #fff; 
+            border: none; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            transition: background 0.3s; 
+          }
+          .notify-btn { background: #28a745; }
+          .notify-btn:hover { background: #218838; }
+          .call-btn { background: #17a2b8; }
+          .call-btn:hover { background: #138496; }
+        </style>
 </head>
 <body>
-    <!-- 主容器 -->
-    <div class="container">
-        <h1>通知车主挪车</h1>
-        
-        <!-- 紧急程度选择 -->
-        <select id="urgencySelect" class="select-box">
-            <option value="low">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--非常抱歉影响到您的出行--</option>
-        </select>
-        
-<!-- 消息模板选择 -->
-        <select id="messageTemplate" class="select-box">
-           
-            <option value="需要挪车 请及时处理">出行受阻 尽快挪车</option>
-            <option value="温馨提醒 车窗未关"> 温馨提醒 车窗未关</option>
-            <option value="交警查车 尽快驶离"> 交警查车 尽快驶离</option>
-        </select>
-        
-
-        <!-- 自定义消息输入框 -->
-        <textarea 
-            id="messageInput" 
-            class="input-box-textarea" 
-            placeholder="可留下联系方式，方便车主联系您！可留空，默认发送信息给车主尽快前来移车！"
-        ></textarea>
-
-        <!-- 通知按钮 -->
-        <button id="notifyBtn" class="notify-btn">通知车主</button>
-
-        <!-- 拨打电话滑块 -->
-        <div id="callSlider" class="call-slider">
-            <div class="call-text">向右滑动拨打电话</div>
-            <div id="callHandle" class="call-handle"></div>
-            <div id="callProgress" class="call-progress"></div>
-        </div>
-
-        <!-- 历史记录切换按钮 -->
-        <button id="historyToggle" class="history-toggle">
-            <span>通知历史记录</span>
-            <span id="historyCount">0条记录</span>
-        </button>
-
-        <!-- 历史记录列表 -->
-        <div id="historyList" class="history-list"></div>
-    </div>
-
-    <!-- 主题切换按钮组 -->
-    <div class="theme-toggles">
-        <button class="theme-btn active" data-theme="light">☀️</button>
-        <button class="theme-btn" data-theme="warm">🌅</button>
-        <button class="theme-btn" data-theme="dark">🌙</button>
-    </div>
-
-    <!-- Toast提示容器 -->
-    <div id="toastContainer" class="toast-container">
-        <div class="toast-content">
-            <div class="toast-icon">
-                <div class="toast-loading"></div>
-            </div>
-            <div class="toast-message"></div>
-        </div>
-    </div>
-
-    <!-- 引入JavaScript文件 -->
-    <script src="config.js"></script>
-    <script src="app.js"></script>
+<div class="container">
+    <h1>通知车主挪车</h1>
+    <p>如需通知车主，请点击以下按钮</p>
+    <button class="notify-btn" onclick="notifyOwner()">通知车主挪车</button>
+    <button class="call-btn" onclick="callOwner()">拨打车主电话</button>
+</div>
+<script>
+function notifyOwner() {
+    fetch("https://wxpusher.zjiecode.com/api/send/message", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            appToken: "你的wxpusherAppToken",
+            content: "您好，有人需要您挪车，请及时处理。",
+            contentType: 1,
+            uids: JSON.stringify(["用户的UID列表"])
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.code === 1000) {
+            alert("通知已发送！");
+        } else {
+            alert("通知发送失败，请稍后重试。");
+        }
+    })
+    .catch(error => {
+        console.error("Error sending notification:", error);
+        alert("通知发送出错，请检查网络连接。");
+    });
+}
+ 
+function callOwner() {
+    window.location.href = "tel:131********";
+}
+</script>
 </body>
 </html>
