@@ -36,43 +36,41 @@ function notifyOwner() {
             icon: 'warning',
             title: '发送过于频繁',
             text: '请稍后再试！',
-            position: 'top',  // 弹窗位置调整到顶部
-            toast: true, // 使用toast样式
-            timer: 2000,  // 弹窗显示2秒后自动消失
+            position: 'top',
+            toast: true,
+            timer: 2000,
             showConfirmButton: false
         });
         return;
     }
 
-    const apiUrl = "https://7a5be6d66c13481ca1601d8b8ac9a6f7-cn-hangzhou.alicloudapi.com";  // API 网关 URL
-
-    fetch(apiUrl, {
+    fetch("https://1251343297-2u9yy1g9ys.ap-beijing.tencentscf.com", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+            uids: ["UID_AIQ8tkck5ulReU0umP6rNfOJ10lw", "UID_AIQ8tkck5ulReU0umP6rNfOJ10lw1"],
             content: "您好，有人需要您挪车，请及时处理。",
-            uids: ["UID_AIQ8tkck5ulReU0umP6rNfOJ10lw", "UID_AIQ8tkck5ulReU0umP6rNfOJ10lw1"]
         })
     })
     .then(response => response.json())
     .then(data => {
-        if (data.code === 1000) {
+        if (data.message === '通知发送成功') {
             Swal.fire({
                 icon: 'success',
                 title: '通知已发送！',
                 text: '车主已收到您的通知。',
-                position: 'top',  // 弹窗位置调整到顶部
-                toast: true, // 使用toast样式
-                timer: 2000,  // 弹窗显示2秒后自动消失
+                position: 'top',
+                toast: true,
+                timer: 2000,
                 showConfirmButton: false
             });
-            lastNotifyTime = currentTime; // 更新最后发送时间
+            lastNotifyTime = currentTime;
         } else {
             Swal.fire({
                 icon: 'error',
                 title: '通知发送失败',
                 text: '请稍后重试。',
-                position: 'top',  // 弹窗位置调整到顶部
+                position: 'top',
                 toast: true,
                 timer: 2000,
                 showConfirmButton: false
@@ -85,14 +83,14 @@ function notifyOwner() {
             icon: 'error',
             title: '网络错误',
             text: '通知发送出错，请检查网络连接。',
-            position: 'top',  // 弹窗位置调整到顶部
+            position: 'top',
             toast: true,
             timer: 2000,
             showConfirmButton: false
         });
     });
 }
-
+   
 function callOwner() {
     window.location.href = "tel:17896021990";
 }
