@@ -6,15 +6,40 @@
 <title>通知车主挪车</title>
 <style>
           * { box-sizing: border-box; margin: 0; padding: 0; }
-          body { font-family: Arial, sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; background: #f0f2f5; color: #333; }
-          .container { text-align: center; padding: 20px; width: 100%; max-width: 400px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); background: #fff; }
-          h1 { font-size: 24px; margin-bottom: 20px; color: #007bff; }
-          p { margin-bottom: 20px; font-size: 16px; color: #555; }
+          body { 
+            font-family: Arial, sans-serif; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            height: 100vh; 
+            background: #f0f2f5; 
+            color: #333; 
+            padding: 10px;
+          }
+          .container { 
+            text-align: center; 
+            padding: 20px; 
+            width: 100%; 
+            max-width: 350px; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+            background: #fff; 
+          }
+          h1 { 
+            font-size: 20px; 
+            margin-bottom: 15px; 
+            color: #007bff; 
+          }
+          p { 
+            margin-bottom: 15px; 
+            font-size: 14px; 
+            color: #555; 
+          }
           button { 
             width: 100%; 
-            padding: 15px; 
-            margin: 10px 0; 
-            font-size: 18px; 
+            padding: 12px; 
+            margin: 8px 0; 
+            font-size: 16px; 
             font-weight: bold; 
             color: #fff; 
             border: none; 
@@ -26,15 +51,15 @@
           .notify-btn:hover { background: #218838; }
           .call-btn { background: #17a2b8; }
           .call-btn:hover { background: #138496; }
-        </style>
+</style>
 </head>
 <body>
 <div class="container">
         <h1>通知车主挪车</h1>
         <p>如需通知车主，请点击以下按钮</p>
-<button class="notify-btn" onclick="notifyOwner()">通知车主挪车</button>
+        <button class="notify-btn" onclick="notifyOwner()">通知车主挪车</button>
         <button class="call-btn" onclick="callOwner()">拨打车主电话</button>
-        
+</div>
 <script>
 let lastNotifyTime = 0; // 上次通知时间（时间戳）
 
@@ -74,7 +99,5 @@ function callOwner() {
     window.location.href = "tel:1318888888";
 }
 </script>
-</body></html>
-         
-</script>
-
+</body>
+</html>
