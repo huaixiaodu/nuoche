@@ -94,22 +94,18 @@ function notifyOwner() {
     .then(response => response.json())
     .then(data => {
         if (data.code === 1000) {
-            // 使用 SweetAlert2 显示通知已发送的提示框，并修改大小
+            // 使用 SweetAlert2 显示通知已发送的提示框
             Swal.fire({
                 icon: 'success',
                 title: '通知已发送！',
-                text: '车主已收到您的通知。',
-                width: '400px'  // 设置弹窗宽度为 400px
-                confirmButtonColor: '#28a745',  // 设置按钮颜色
-                padding: '20px',  // 设置弹窗内部的 padding     
+                text: '车主已收到您的通知。'
             });
             lastNotifyTime = currentTime; // 更新最后发送时间
         } else {
             Swal.fire({
                 icon: 'error',
                 title: '通知发送失败',
-                text: '请稍后重试。',
-                width: '400px'  // 设置弹窗宽度为 400px
+                text: '请稍后重试。'
             });
         }
     })
@@ -118,8 +114,7 @@ function notifyOwner() {
         Swal.fire({
             icon: 'error',
             title: '网络错误',
-            text: '通知发送出错，请检查网络连接。',
-            width: '400px'  // 设置弹窗宽度为 400px
+            text: '通知发送出错，请检查网络连接。'
         });
     });
 }
