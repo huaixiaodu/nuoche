@@ -44,15 +44,13 @@ function notifyOwner() {
         return;
     }
 
-    // 调用后端 API
-    fetch("https://1251343297-i94fjfqyv0.ap-beijing.tencentscf.com", {  // 假设您的后端 API 地址是 /api/notify-owner
+    const apiUrl = "https://your-api-id.apigateway.com/notify-owner";  // API 网关 URL
+
+    fetch(apiUrl, {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
             content: "您好，有人需要您挪车，请及时处理。",
-            contentType: 1,
             uids: ["UID_AIQ8tkck5ulReU0umP6rNfOJ10lw", "UID_AIQ8tkck5ulReU0umP6rNfOJ10lw1"]
         })
     })
@@ -63,9 +61,9 @@ function notifyOwner() {
                 icon: 'success',
                 title: '通知已发送！',
                 text: '车主已收到您的通知。',
-                position: 'top',
-                toast: true,
-                timer: 2000,
+                position: 'top',  // 弹窗位置调整到顶部
+                toast: true, // 使用toast样式
+                timer: 2000,  // 弹窗显示2秒后自动消失
                 showConfirmButton: false
             });
             lastNotifyTime = currentTime; // 更新最后发送时间
@@ -74,7 +72,7 @@ function notifyOwner() {
                 icon: 'error',
                 title: '通知发送失败',
                 text: '请稍后重试。',
-                position: 'top',
+                position: 'top',  // 弹窗位置调整到顶部
                 toast: true,
                 timer: 2000,
                 showConfirmButton: false
@@ -87,13 +85,19 @@ function notifyOwner() {
             icon: 'error',
             title: '网络错误',
             text: '通知发送出错，请检查网络连接。',
-            position: 'top',
+            position: 'top',  // 弹窗位置调整到顶部
             toast: true,
             timer: 2000,
             showConfirmButton: false
         });
     });
 }
+
+function callOwner() {
+    window.location.href = "tel:17896021990";
+}
+
+
 
 function callOwner() {
     window.location.href = "tel:17896021990";
