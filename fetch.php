@@ -20,7 +20,7 @@ if (file_exists($timestampFile)) {
 }
   
 // 执行外部 API 调用
-$apiUrl = 'https://sctapi.ftqq.com/<sendkey>.send?title=挪车通知&desp=有人扫码通知你挪车啦';  //<sendkey>请自行为自己的SCT开头的密钥
+$apiUrl = 'https://sctapi.ftqq.com/<SCT178733TcEC6UOZXPu9tdr8hAEILHdm3>.send?title=挪车通知&desp=有人扫码通知你挪车啦';  //<sendkey>请自行为自己的SCT开头的密钥
 $ch = curl_init($apiUrl);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $response = curl_exec($ch);
