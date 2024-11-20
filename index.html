@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+<!-- 引入 SweetAlert2 的 CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.5.1/dist/sweetalert2.min.css">
+
+<!-- 引入 SweetAlert2 的 JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.5.1/dist/sweetalert2.all.min.js"></script>
+     
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>通知车主挪车</title>
@@ -66,11 +72,7 @@ let lastNotifyTime = 0; // 上次通知时间（时间戳）
 function notifyOwner() {
     const currentTime = Date.now();
     if (currentTime - lastNotifyTime < 60 * 1000) {
-        Swal.fire({
-            icon: 'warning',
-            title: '发送过于频繁',
-            text: '请稍后再试！'
-        });
+        alert("通知发送过于频繁，请稍后再试！");
         return;
     }
 
@@ -86,31 +88,18 @@ function notifyOwner() {
     })
     .then(response => response.json())
     .then(data => {
-        if (data.code === 1000) {  // 请求成功
-            Swal.fire({
-                icon: 'success',
-                title: '通知已发送！',
-                text: '车主已收到您的通知。'
-            });
-            lastNotifyTime = currentTime;  // 更新最后发送时间
+        if (data.code === 1000) {
+            alert("通知已发送！");
+            lastNotifyTime = currentTime; // 更新最后发送时间
         } else {
-            Swal.fire({
-                icon: 'error',
-                title: '发送失败',
-                text: '请稍后重试。'
-            });
+            alert("通知发送失败，请稍后重试。");
         }
     })
     .catch(error => {
         console.error("Error sending notification:", error);
-        Swal.fire({
-            icon: 'error',
-            title: '网络错误',
-            text: '通知发送出错，请检查网络连接。'
-        });
+        alert("通知发送出错，请检查网络连接。");
     });
 }
-
 
 function callOwner() {
     window.location.href = "tel:1318888888";
