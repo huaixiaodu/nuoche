@@ -100,6 +100,8 @@ function notifyOwner() {
                 title: '通知已发送！',
                 text: '车主已收到您的通知。',
                 width: '400px'  // 设置弹窗宽度为 400px
+                confirmButtonColor: '#28a745',  // 设置按钮颜色
+                padding: '20px',  // 设置弹窗内部的 padding     
             });
             lastNotifyTime = currentTime; // 更新最后发送时间
         } else {
