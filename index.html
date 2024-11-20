@@ -73,7 +73,11 @@ let lastNotifyTime = 0; // 上次通知时间（时间戳）
 function notifyOwner() {
     const currentTime = Date.now();
     if (currentTime - lastNotifyTime < 60 * 1000) {
-        alert("通知发送过于频繁，请稍后再试！");
+        Swal.fire({
+            icon: 'warning',
+            title: '发送过于频繁',
+            text: '请稍后再试！'
+        });
         return;
     }
 
@@ -90,21 +94,38 @@ function notifyOwner() {
     .then(response => response.json())
     .then(data => {
         if (data.code === 1000) {
-            alert("通知已发送！");
+            // 使用 SweetAlert2 显示通知已发送的提示框，并修改大小
+            Swal.fire({
+                icon: 'success',
+                title: '通知已发送！',
+                text: '车主已收到您的通知。',
+                width: '400px'  // 设置弹窗宽度为 400px
+            });
             lastNotifyTime = currentTime; // 更新最后发送时间
         } else {
-            alert("通知发送失败，请稍后重试。");
+            Swal.fire({
+                icon: 'error',
+                title: '通知发送失败',
+                text: '请稍后重试。',
+                width: '400px'  // 设置弹窗宽度为 400px
+            });
         }
     })
     .catch(error => {
         console.error("Error sending notification:", error);
-        alert("通知发送出错，请检查网络连接。");
+        Swal.fire({
+            icon: 'error',
+            title: '网络错误',
+            text: '通知发送出错，请检查网络连接。',
+            width: '400px'  // 设置弹窗宽度为 400px
+        });
     });
 }
 
 function callOwner() {
     window.location.href = "tel:1318888888";
 }
+
 </script>
 </body>
 </html>
