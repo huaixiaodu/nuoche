@@ -86,7 +86,7 @@ function notifyOwner() {
     }
 
     // 调用云函数的 URL
-    fetch("https://nuochce-dwmfnmmkvs.cn-hangzhou.fcapp.run/notify-owner", { // 替换为实际的云函数地址
+    fetch("http://5626ad27cf5a4f9b977a75a188e80969-cn-hangzhou.alicloudapi.com/notify-owner", { // 替换为实际的云函数地址
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
