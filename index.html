@@ -7,57 +7,57 @@
 <!-- 引入 SweetAlert2 的 JS -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.5.1/dist/sweetalert2.all.min.js"></script>
 
-         
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>通知车主挪车</title>
 <style>
-          * { box-sizing: border-box; margin: 0; padding: 0; }
-          body { 
-            font-family: Arial, sans-serif; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            height: 100vh; 
-            background: #f0f2f5; 
-            color: #333; 
-            padding: 10px;
-          }
-          .container { 
-            text-align: center; 
-            padding: 20px; 
-            width: 100%; 
-            max-width: 350px; 
-            border-radius: 8px; 
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-            background: #fff; 
-          }
-          h1 { 
-            font-size: 20px; 
-            margin-bottom: 15px; 
-            color: #007bff; 
-          }
-          p { 
-            margin-bottom: 15px; 
-            font-size: 14px; 
-            color: #555; 
-          }
-          button { 
-            width: 100%; 
-            padding: 12px; 
-            margin: 8px 0; 
-            font-size: 16px; 
-            font-weight: bold; 
-            color: #fff; 
-            border: none; 
-            border-radius: 6px; 
-            cursor: pointer; 
-            transition: background 0.3s; 
-          }
-          .notify-btn { background: #28a745; }
-          .notify-btn:hover { background: #218838; }
-          .call-btn { background: #17a2b8; }
-          .call-btn:hover { background: #138496; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+        font-family: Arial, sans-serif; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        height: 100vh; 
+        background: #f0f2f5; 
+        color: #333; 
+        padding: 10px;
+    }
+    .container { 
+        text-align: center; 
+        padding: 20px; 
+        width: 100%; 
+        max-width: 350px; 
+        border-radius: 8px; 
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+        background: #fff; 
+        margin-top: 20px; /* 保证主窗口不会被遮挡 */
+    }
+    h1 { 
+        font-size: 20px; 
+        margin-bottom: 15px; 
+        color: #007bff; 
+    }
+    p { 
+        margin-bottom: 15px; 
+        font-size: 14px; 
+        color: #555; 
+    }
+    button { 
+        width: 100%; 
+        padding: 12px; 
+        margin: 8px 0; 
+        font-size: 16px; 
+        font-weight: bold; 
+        color: #fff; 
+        border: none; 
+        border-radius: 6px; 
+        cursor: pointer; 
+        transition: background 0.3s; 
+    }
+    .notify-btn { background: #28a745; }
+    .notify-btn:hover { background: #218838; }
+    .call-btn { background: #17a2b8; }
+    .call-btn:hover { background: #138496; }
 </style>
 </head>
 <body>
@@ -76,7 +76,11 @@ function notifyOwner() {
         Swal.fire({
             icon: 'warning',
             title: '发送过于频繁',
-            text: '请稍后再试！'
+            text: '请稍后再试！',
+            position: 'top',  // 弹窗位置调整到顶部
+            toast: true, // 使用toast样式
+            timer: 2000,  // 弹窗显示2秒后自动消失
+            showConfirmButton: false
         });
         return;
     }
@@ -98,14 +102,22 @@ function notifyOwner() {
             Swal.fire({
                 icon: 'success',
                 title: '通知已发送！',
-                text: '车主已收到您的通知。'
+                text: '车主已收到您的通知。',
+                position: 'top',  // 弹窗位置调整到顶部
+                toast: true, // 使用toast样式
+                timer: 2000,  // 弹窗显示2秒后自动消失
+                showConfirmButton: false
             });
             lastNotifyTime = currentTime; // 更新最后发送时间
         } else {
             Swal.fire({
                 icon: 'error',
                 title: '通知发送失败',
-                text: '请稍后重试。'
+                text: '请稍后重试。',
+                position: 'top',  // 弹窗位置调整到顶部
+                toast: true,
+                timer: 2000,
+                showConfirmButton: false
             });
         }
     })
@@ -114,7 +126,11 @@ function notifyOwner() {
         Swal.fire({
             icon: 'error',
             title: '网络错误',
-            text: '通知发送出错，请检查网络连接。'
+            text: '通知发送出错，请检查网络连接。',
+            position: 'top',  // 弹窗位置调整到顶部
+            toast: true,
+            timer: 2000,
+            showConfirmButton: false
         });
     });
 }
@@ -122,7 +138,6 @@ function notifyOwner() {
 function callOwner() {
     window.location.href = "tel:1318888888";
 }
-
 </script>
 </body>
 </html>
