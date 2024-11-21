@@ -17,7 +17,7 @@ function notifyOwner() {
         });
         return;
     }
-
+    
     fetch("https://wxpusher.zjiecode.com/api/send/message", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
