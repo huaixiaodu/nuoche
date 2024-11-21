@@ -1,7 +1,7 @@
 let lastNotifyTime = 0; // 上次通知时间（时间戳）
 
 // 假设我们从某个地方获取用户的UID
-const userUID = "UID_AIQ8tkck5ulReU0umP6rNfOJ10lw";  // 动态设置的用户 UID
+const userUID = "[userUID]";  // 动态设置的用户 UID
 
 function notifyOwner() {
     const currentTime = Date.now();
