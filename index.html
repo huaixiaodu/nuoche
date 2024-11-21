@@ -1,1 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.5.1/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.5.1/dist/sweetalert2.all.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>通知车主挪车</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: #f0f2f5;
+            color: #333;
+            padding: 10px;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+            max-width: 350px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background: #fff;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .notify-btn { background: #28a745; }
+        .notify-btn:hover { background: #218838; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>通知车主挪车</h1>
+    <p>如需通知车主，请点击以下按钮</p>
+    <button class="notify-btn" onclick="notifyOwner()">通知车主挪车</button>
+</div>
+
+<script>
+    function notifyOwner() {
+        fetch("https://1251343297-d9cys5uj68.ap-beijing.tencentscf.com/release/sendNotification", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message: "您好，有人需要您挪车，请及时处理。" })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.message === "通知发送成功") {
+                Swal.fire({
+                    icon: 'success',
+                    title: '通知已发送！',
+                    text: '车主已收到您的通知。',
+                    timer: 2000,
+                    toast: true,
+                    position: 'top',
+                    showConfirmButton: false
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: '通知发送失败',
+                    text: data.message || '请稍后重试。',
+                    timer: 2000,
+                    toast: true,
+                    position: 'top',
+                    showConfirmButton: false
+                });
+            }
+        })
+        .catch(error => {
+            console.error("请求错误:", error);
+            Swal.fire({
+                icon: 'error',
+                title: '网络错误',
+                text: '通知发送失败，请检查网络连接。',
+                timer: 2000,
+                toast: true,
+                position: 'top',
+                showConfirmButton: false
+            });
+        });
+    }
+</script>
+</body>
+</html>
 
