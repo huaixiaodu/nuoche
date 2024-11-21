@@ -3,7 +3,6 @@
 <head>
     <!-- 引入 SweetAlert2 的 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.5.1/dist/sweetalert2.min.css">
-
     <!-- 引入 SweetAlert2 的 JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.5.1/dist/sweetalert2.all.min.js"></script>
 
@@ -30,7 +29,7 @@
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             background: #fff;
-            margin-top: 20px;
+            margin-top: 20px; /* 保证主窗口不会被遮挡 */
         }
         h1 {
             font-size: 20px;
@@ -67,6 +66,7 @@
     <button class="notify-btn" onclick="notifyOwner()">通知车主挪车</button>
     <button class="call-btn" onclick="callOwner()">拨打车主电话</button>
 </div>
+
 <script>
     let lastNotifyTime = 0; // 上次通知时间（时间戳）
 
@@ -77,25 +77,24 @@
                 icon: 'warning',
                 title: '发送过于频繁',
                 text: '请稍后再试！',
-                position: 'top',
-                toast: true,
-                timer: 2000,
+                position: 'top', // 弹窗位置调整到顶部
+                toast: true, // 使用 toast 样式
+                timer: 2000, // 弹窗显示 2 秒后自动消失
                 showConfirmButton: false
             });
             return;
         }
 
-        // 调用后端 API（云函数地址替换为实际部署的地址）
-        fetch("https://1251343297-d9cys5uj68.ap-beijing.tencentscf.com", {
+        fetch("https://1251343297-d9cys5uj68.ap-beijing.tencentscf.com/release/sendNotification", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                message: "您好，有人需要您挪车，请及时处理。"
+                message: "您好，有人需要您挪车，请及时处理。" // 自定义通知内容
             })
         })
         .then(response => response.json())
         .then(data => {
-            if (data.statusCode === 200) {
+            if (data.message === "通知发送成功") {
                 Swal.fire({
                     icon: 'success',
                     title: '通知已发送！',
@@ -110,7 +109,7 @@
                 Swal.fire({
                     icon: 'error',
                     title: '通知发送失败',
-                    text: '请稍后重试。',
+                    text: data.message || '请稍后重试。',
                     position: 'top',
                     toast: true,
                     timer: 2000,
@@ -133,7 +132,7 @@
     }
 
     function callOwner() {
-        // 修改为实际车主电话号码
+        // 替换为实际车主电话
         window.location.href = "tel:17896021990";
     }
 </script>
