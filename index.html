@@ -1,97 +1,28 @@
-/* 全局样式 */
-* { 
-    box-sizing: border-box; 
-    margin: 0; 
-    padding: 0; 
-}
-body { 
-    font-family: 'Roboto', sans-serif; 
-    background: linear-gradient(135deg, #f6d365, #fda085); 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    height: 100vh; 
-    padding: 20px; 
-    color: #333;
-}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
 
-/* 容器样式 */
-.container { 
-    background: #fff; 
-    padding: 35px 25px; 
-    border-radius: 15px; 
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); 
-    max-width: 450px; 
-    text-align: center; 
-    animation: fadeIn 1s ease-in-out; 
-}
+    <!-- 引入 SweetAlert2 的 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.5.1/dist/sweetalert2.min.css">
+    <!-- 引入自定义样式 -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>通知车主挪车</h1>
+        <p>如需通知车主，请点击以下按钮</p>
+        <div class="button-group">
+            <button id="notify-btn" class="notify-btn">微信通知</button>
+            <button class="call-btn" onclick="callOwner()">电话通知</button>
+        </div>
+    </div>
 
-/* 标题样式 */
-h1 { 
-    font-size: 20px; 
-    color: #4a90e2; 
-    margin-bottom: 15px; 
-}
-
-/* 段落样式 */
-p { 
-    font-size: 16px; 
-    color: #666; 
-    margin-bottom: 20px; 
-    line-height: 1.5; 
-}
-
-/* 按钮组样式 */
-.button-group { 
-    display: flex; 
-    gap: 15px; 
-    flex-wrap: wrap; 
-    justify-content: center; 
-}
-
-/* 按钮基础样式 */
-button { 
-    flex: 1; 
-    padding: 18px; 
-    border: none; 
-    border-radius: 8px; 
-    font-size: 16px; 
-    font-weight: bold; 
-    cursor: pointer; 
-    transition: all 0.3s ease; 
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-    color: #fff; 
-}
-
-/* 通知按钮样式 */
-.notify-btn { 
-    background: #4caf50; 
-}
-.notify-btn:hover { 
-    background: #45a049; 
-}
-.notify-btn:disabled { 
-    background: #c8e6c9; 
-    color: #777; 
-    cursor: not-allowed; 
-}
-
-/* 拨打按钮样式 */
-.call-btn { 
-    background: #2196f3; 
-}
-.call-btn:hover { 
-    background: #1e88e5; 
-}
-
-/* 动画效果 */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+    <!-- 引入 SweetAlert2 的 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.5.1/dist/sweetalert2.all.min.js"></script>
+    <!-- 引入自定义脚本 -->
+    <script src="script.js"></script>
+</body>
+</html>
