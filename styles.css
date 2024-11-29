@@ -14,8 +14,6 @@ body {
     padding: 20px; 
     color: #333;
 }
-
-/* 容器样式 */
 .container { 
     background: #fff; 
     padding: 35px 25px; 
@@ -25,31 +23,23 @@ body {
     text-align: center; 
     animation: fadeIn 1s ease-in-out; 
 }
-
-/* 标题样式 */
 h1 { 
     font-size: 20px; 
     color: #4a90e2; 
     margin-bottom: 15px; 
 }
-
-/* 段落样式 */
 p { 
     font-size: 16px; 
     color: #666; 
     margin-bottom: 20px; 
     line-height: 1.5; 
 }
-
-/* 按钮组样式 */
 .button-group { 
     display: flex; 
     gap: 15px; 
     flex-wrap: wrap; 
     justify-content: center; 
 }
-
-/* 按钮基础样式 */
 button { 
     flex: 1; 
     padding: 18px; 
@@ -62,8 +52,6 @@ button {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
     color: #fff; 
 }
-
-/* 通知按钮样式 */
 .notify-btn { 
     background: #4caf50; 
 }
@@ -75,16 +63,12 @@ button {
     color: #777; 
     cursor: not-allowed; 
 }
-
-/* 拨打按钮样式 */
 .call-btn { 
     background: #2196f3; 
 }
 .call-btn:hover { 
     background: #1e88e5; 
 }
-
-/* 动画效果 */
 @keyframes fadeIn {
     from {
         opacity: 0;
